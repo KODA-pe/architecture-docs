@@ -1,0 +1,70 @@
+
+flowchart LR
+    subgraph Entrada["Entrada"]
+        UI["Usuarios (admin, recepción)"]
+        Biometrico["Reloj Biométrico"]
+    end
+
+    subgraph Azure["Servicios Azure"]
+        APIM["API Management (Gateway)"]
+        ServiceBus["Service Bus (Topic/Queue)"]
+        ContainerApps["Container Apps Environment"]
+    end
+
+    subgraph Microservicios["Microservicios (Container Apps)"]
+        subgraph Personal["personal-service (ASP.NET Core)"]
+            PersonalApp["App"]
+            DaprP["Dapr Sidecar"]
+        end
+        subgraph Pagos["payment-service (ASP.NET Core)"]
+            PagosApp["App"]
+            DaprPa["Dapr Sidecar"]
+        end
+        subgraph Reportes["report-service (ASP.NET Core)"]
+            ReportesApp["App"]
+            DaprR["Dapr Sidecar"]
+        end
+    end
+
+    subgraph Datos["Bases de datos (Azure SQL)"]
+        PersonalDB[("PersonalDB")]
+        PagosDB[("PaymentsDB")]
+        ReportesDB[("ReportsDB")]
+    end
+
+    subgraph Externo["Equipo InnovaByte"]
+        InnovaByte["Módulo Clínico (suscriptor de eventos)"]
+    end
+
+    %% Flujos de usuario
+    UI --> APIM
+    Biometrico --> APIM
+
+    %% APIM enruta a cada servicio
+    APIM --> PersonalApp
+    APIM --> PagosApp
+    APIM --> ReportesApp
+
+    %% Comunicación interna vía Dapr (service invocation)
+    PersonalApp <-.-> DaprP
+    PagosApp <-.-> DaprPa
+    ReportesApp <-.-> DaprR
+
+    %% Dapr publica/suscribe a Service Bus
+    DaprP -- "pub/sub" --> ServiceBus
+    DaprPa -- "pub/sub" --> ServiceBus
+    DaprR -- "pub/sub" --> ServiceBus
+    InnovaByte -- "suscripción externa" --> ServiceBus
+
+    %% Acceso exclusivo a BD
+    PersonalApp --> PersonalDB
+    PagosApp --> PagosDB
+    ReportesApp --> ReportesDB
+
+    %% Eventos claves
+    PagosApp -- "PaquetePagado" --> DaprPa --> ServiceBus
+    ServiceBus -- "PaquetePagado" --> InnovaByte
+    ServiceBus -- "PaquetePagado" --> DaprR --> ReportesApp
+
+    PersonalApp -- "AsistenciaRegistrada" --> DaprP --> ServiceBus
+    ServiceBus -- "AsistenciaRegistrada" --> DaprR
