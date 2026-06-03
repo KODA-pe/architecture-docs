@@ -1,3 +1,4 @@
+```mermaid
 erDiagram
     Patient {
         int id PK
@@ -72,3 +73,5 @@ erDiagram
     Patient ||--o{ PackageSale : "buys"
     PackageSale ||--o{ Installment : "paid in"
     Referrer ||--o{ CommissionRecord : "earns"
+
+```
