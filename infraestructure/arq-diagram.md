@@ -1,3 +1,4 @@
+```mermaid
 flowchart LR
     subgraph Entrada["Entrada"]
         UI["Usuarios (admin, recepción)"]
@@ -67,3 +68,5 @@ flowchart LR
 
     PersonalApp -- "AsistenciaRegistrada" --> DaprP --> ServiceBus
     ServiceBus -- "AsistenciaRegistrada" --> DaprR
+
+```

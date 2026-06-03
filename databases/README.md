@@ -1,6 +1,17 @@
 
 ## 1. Personal‑Service (Gestión de personal, roles, sucursales, turnos, asistencias y excepciones)
 
+**Diagrama:** [personal-service-db.md](personal-service-db.md)
+
+**Entidades principales:**
+- `Employee`: datos base del personal (fisioterapeutas, recepcionistas, internos).
+- `Role`: permisos por rol en formato `json`.
+- `Branch`: sucursales y horarios de atencion.
+- `Specialization` y `EmployeeSpecialization`: especialidades y relacion muchos-a-muchos.
+- `ShiftAssignment`: turnos por colaborador y sucursal.
+- `Attendance`: marcas de entrada/salida y control de tardanzas/ausencias.
+- `Exception`: incidencias laborales (bajas, permisos, vacaciones).
+
 **Notas:**
 - `Employee` cubre fisioterapeutas, recepcionistas e internos.
 - Las especialidades de los fisioterapeutas se manejan con una relación muchos-a-muchos.
@@ -10,6 +21,17 @@
 ---
 
 ## 2. Payment‑Service (Caja diaria, venta de paquetes, comisiones externas y gastos fijos)
+
+**Diagrama:** [payment-service-db.md](payment-service-db.md)
+
+**Entidades principales:**
+- `Patient`: referencia minima de pacientes para busqueda y deuda.
+- `CashTransaction`: ingresos y egresos diarios de caja.
+- `PackageSale`: venta de paquetes y reglas de negocio aplicadas.
+- `Installment`: pagos parciales (cuotas) de una venta.
+- `Referrer`: comisionistas externos y datos de pago.
+- `CommissionRecord`: comisiones por paciente y estado de pago.
+- `FixedExpense`: gastos fijos mensuales (fuera de caja diaria).
 
 **Notas:**
 - `Patient` mantiene un registro mínimo de pacientes para búsquedas y consultas de deuda, referenciando al ID del módulo clínico.
@@ -22,6 +44,16 @@
 ---
 
 ## 3. Report‑Service (Reportes administrativos y estadísticas)
+
+**Diagrama:** [report-service-db.md](report-service-db.md)
+
+**Entidades principales:**
+- `Patient`: referencia minima usada para reportes.
+- `CashTransaction`: base de ingresos/egresos usados en agregados.
+- `PackageSale`: base de ventas para reportes administrativos.
+- `Installment`: detalle de cuotas para conciliacion.
+- `Referrer` y `CommissionRecord`: comisiones para reportes.
+- `FixedExpense`: gastos fijos en reportes administrativos.
 
 **Notas:**
 - Este servicio no almacena datos transaccionales, solo **agregados** para responder rápido a los reportes.
