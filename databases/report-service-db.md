@@ -1,77 +1,35 @@
+# Report Service Database Schema
+Aclaracion, estas tablas no son 100% obligatorias, son sugerentes, los campos pueden ser solicitados de forma dinamica desde las otras bases de datos, se recomienda su uso para emitir informes automaticamente
+
 ```mermaid
 erDiagram
-    Patient {
+    DailyIncomeSummary {
         int id PK
-        string external_patient_id
-        string full_name
-        string id_number
-        string phone
+        date report_date
+        decimal total_cash_inflow
+        decimal total_yape_inflow
+        decimal total_invoice_amount
+        decimal total_operating_expenses
+        decimal net_cash_balance
     }
 
-    CashTransaction {
+    MonthlyStats {
         int id PK
-        string type
-        decimal amount
-        string payment_method
-        string description
-        date transaction_date
-        string category
+        int year
+        int month
+        int total_patients
+        decimal total_income
+        decimal total_vat
+        int total_packages_sold
+        int peak_day
     }
 
-    PackageSale {
+    PackageSaleSummary {
         int id PK
-        int patient_id FK
         date sale_date
-        decimal base_price
+        int package_sale_id
+        decimal amount
         bool vat_included
-        decimal vat_amount
-        bool discount_applied
-        decimal discount_amount
-        decimal total_amount
-        string status
-        bool informed_consent_signed
+        int patient_id
     }
-
-    Installment {
-        int id PK
-        int sale_id FK
-        decimal amount
-        date payment_date
-        string payment_method
-        bool is_initial_payment
-    }
-
-    Referrer {
-        int id PK
-        string name
-        string type
-        string phone
-        string payment_info
-        decimal default_commission_amount
-    }
-
-    CommissionRecord {
-        int id PK
-        int referrer_id FK
-        string patient_id
-        decimal amount
-        date commission_date
-        string status
-        date payment_date
-    }
-
-    FixedExpense {
-        int id PK
-        string category
-        string description
-        decimal amount
-        date expense_date
-        bool is_paid
-        date payment_date
-    }
-
-    Patient ||--o{ PackageSale : "buys"
-    PackageSale ||--o{ Installment : "paid in"
-    Referrer ||--o{ CommissionRecord : "earns"
-
 ```
