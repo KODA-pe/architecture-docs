@@ -1,6 +1,5 @@
-```mermaid
 erDiagram
-    Employee {
+    employee {
         int id PK
         string first_name
         string last_name
@@ -14,30 +13,30 @@ erDiagram
         float satisfaction_level
     }
 
-    Role {
+    role {
         int id PK
         string name
         json permissions
     }
 
-    Branch {
+    branch {
         int id PK
         string name
         string address
         string hours_of_operation
     }
 
-    Specialization {
+    specialization {
         int id PK
         string name
     }
 
-    EmployeeSpecialization {
+    employee_specialization {
         int employee_id FK
         int specialization_id FK
     }
 
-    ShiftAssignment {
+    shift_assignment {
         int id PK
         int employee_id FK
         int branch_id FK
@@ -46,7 +45,7 @@ erDiagram
         time end_time
     }
 
-    Attendance {
+    attendance {
         int id PK
         int employee_id FK
         int branch_id FK
@@ -57,7 +56,7 @@ erDiagram
         string registration_method
     }
 
-    Exception {
+    exception {
         int id PK
         int employee_id FK
         string reason
@@ -67,13 +66,11 @@ erDiagram
         string approval_status
     }
 
-    Employee ||--o{ Branch : "works at"
-    Employee ||--o{ Role : "has"
-    Employee ||--o{ EmployeeSpecialization : "has"
-    Specialization ||--o{ EmployeeSpecialization : "assigned to"
-    Employee ||--o{ ShiftAssignment : "assigned"
-    Branch ||--o{ ShiftAssignment : "location"
-    Employee ||--o{ Attendance : "registers"
-    Employee ||--o{ Exception : "has"
-
-```
+    employee ||--o{ branch : "works_at"
+    employee ||--o{ role : "has"
+    employee ||--o{ employee_specialization : "has"
+    specialization ||--o{ employee_specialization : "assigned_to"
+    employee ||--o{ shift_assignment : "assigned"
+    branch ||--o{ shift_assignment : "location"
+    employee ||--o{ attendance : "registers"
+    employee ||--o{ exception : "has"
