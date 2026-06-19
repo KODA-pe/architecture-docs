@@ -1,6 +1,6 @@
 ```mermaid
 erDiagram
-    Patient {
+    patient {
         int id PK
         string external_patient_id
         string full_name
@@ -8,7 +8,7 @@ erDiagram
         string phone
     }
 
-    CashTransaction {
+    cash_transaction {
         int id PK
         string type
         decimal amount
@@ -18,7 +18,7 @@ erDiagram
         string category
     }
 
-    PackageSale {
+    package_sale {
         int id PK
         int patient_id FK
         date sale_date
@@ -32,7 +32,7 @@ erDiagram
         bool informed_consent_signed
     }
 
-    Installment {
+    installment {
         int id PK
         int sale_id FK
         decimal amount
@@ -41,7 +41,7 @@ erDiagram
         bool is_initial_payment
     }
 
-    Referrer {
+    referrer {
         int id PK
         string name
         string type
@@ -50,7 +50,7 @@ erDiagram
         decimal default_commission_amount
     }
 
-    CommissionRecord {
+    commission_record {
         int id PK
         int referrer_id FK
         string patient_id
@@ -60,7 +60,7 @@ erDiagram
         date payment_date
     }
 
-    FixedExpense {
+    fixed_expense {
         int id PK
         string category
         string description
@@ -70,8 +70,8 @@ erDiagram
         date payment_date
     }
 
-    Patient ||--o{ PackageSale : "buys"
-    PackageSale ||--o{ Installment : "paid in"
-    Referrer ||--o{ CommissionRecord : "earns"
+    patient ||--o{ package_sale : "buys"
+    package_sale ||--o{ installment : "paid in"
+    referrer ||--o{ commission_record : "earns"
 
 ```
