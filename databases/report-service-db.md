@@ -3,17 +3,7 @@ Aclaracion, estas tablas no son 100% obligatorias, son sugerentes, los campos pu
 
 ```mermaid
 erDiagram
-    DailyIncomeSummary {
-        int id PK
-        date report_date
-        decimal total_cash_inflow
-        decimal total_yape_inflow
-        decimal total_invoice_amount
-        decimal total_operating_expenses
-        decimal net_cash_balance
-    }
-
-    MonthlyStats {
+    monthly_stats {
         int id PK
         int year
         int month
@@ -24,7 +14,7 @@ erDiagram
         int peak_day
     }
 
-    PackageSaleSummary {
+    package_sale_summary {
         int id PK
         date sale_date
         int package_sale_id
