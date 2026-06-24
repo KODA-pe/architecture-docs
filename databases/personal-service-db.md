@@ -1,3 +1,4 @@
+```mermaid
 erDiagram
     employee {
         int id PK
@@ -74,3 +75,4 @@ erDiagram
     branch ||--o{ shift_assignment : "location"
     employee ||--o{ attendance : "registers"
     employee ||--o{ exception : "has"
+```
