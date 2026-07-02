@@ -32,6 +32,7 @@ erDiagram
     specialization {
         int id PK
         string name
+        string certificate_file_url 
     }
 
     employee_specialization {
@@ -134,4 +135,3 @@ erDiagram
 | ¿Por qué `branch_id` aparece en `employee` y en `attendance`? | El empleado tiene una sucursal base, pero puede trabajar eventualmente en otras |
 | ¿`shift_assignment` y `attendance` no se repiten? | No, `shift_assignment` es el **horario planeado**, `attendance` es **lo que realmente ocurrió** |
 | ¿Para qué `exception.committed_hours`? | Si un empleado falta 4 horas, puede acordar reponerlas después |
-
