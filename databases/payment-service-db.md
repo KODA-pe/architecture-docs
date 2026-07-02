@@ -145,10 +145,10 @@ Es la tabla central de la contabilidad diaria. Actua como un libro mayor donde s
 - `type`: Tipo de movimiento ('income' para ingreso, 'expense' para gasto).
 - `amount`: El monto del movimiento.
 - `description`: Una glosa o descripcion del movimiento.
-- `category`: Una clasificacion ('pago_cuota', 'pago_comision', 'pago_servicio', 'venta_producto').
+- `category`: Una clasificacion ('pago_consulta', 'pago_comision', 'pago_servicio', 'venta_medicamento').
 
 ### `fixed_expense` (Gasto Fijo)
-Representa las obligaciones de pago recurrentes y fijas, como el alquiler, sueldos administrativos o seguros.
+Representa las obligaciones de pago recurrentes y fijas, como el alquiler, sueldos administrativos, seguros o equipos médicos.
 - `expense_date`: La fecha en que corresponde pagar ese gasto.
 - `is_paid` y `payment_date`: Control simple de pago.
 - `cash_transaction_id`: FK a `cash_transaction`. Conecta el pago de este gasto fijo con la salida de dinero en la caja general.

@@ -83,27 +83,27 @@ erDiagram
 
 ###  `employee` → Los empleados
 - Datos personales (nombre, cédula, email, teléfono)
-- **`role_id`**: ¿Qué cargo tiene? (ej. cajero, gerente)
+- **`role_id`**: ¿Qué cargo tiene? (ej. médico, enfermero, recepcionista)
 - **`branch_id`**: ¿En qué sucursal trabaja?
 - **`contract_type`**: Tipo de contrato (fijo, temporal...)
 - **`satisfaction_level`**: Satisfacción laboral (0 a 1)
 
 ###  `role` → Cargos o puestos
 - **`name`**: Nombre del cargo
-- **`permissions`**: Permisos en formato JSON (ej. `{"can_refund": true, "max_discount": 15}`)
+- **`permissions`**: Permisos en formato JSON (ej. `{"can_prescribe": true, "max_appointments": 20}`)
 
 ### `branch` → Sucursales
 - Datos de cada sucursal (dirección, horario de atención)
 
 ### `specialization` → Habilidades/capacitaciones
-- Ejemplos: "Atención VIP", "Manejo de montacargas", "Caja rápida"
+- Ejemplos: "Cardiología", "Pediatría", "Medicina General"
 
 ### `employee_specialization` → Relación empleado ↔ especialización
 - Un empleado puede tener **varias especializaciones** (tabla intermedia)
 
 ### `shift_assignment` → Turnos asignados
 - Un empleado tiene un **horario recurrente** en una sucursal
-- Ejemplo: "Juan — Sucursal Centro — Lunes a Viernes — 8:00 a 16:00"
+- Ejemplo: "Dr. Juan — Consultorio 3 — Lunes a Viernes — 8:00 a 16:00"
 
 ### `attendance` → Registro de asistencia diaria
 - Hora real de entrada/salida
@@ -112,7 +112,7 @@ erDiagram
 - Método de registro (biométrico, manual, app)
 
 ### `exception` → Excepciones/permisos
-- Ausencias programadas (enfermedad, vacaciones, capacitación)
+- Ausencias programadas (licencia médica, vacaciones, capacitación)
 - **`committed_hours`**: Horas que se comprometió a recuperar
 - **`approval_status`**: pendiente / aprobado / rechazado
 

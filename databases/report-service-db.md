@@ -33,9 +33,9 @@ Es la unica tabla necesaria bajo la regla de negocio definida. Almacena un resum
 
 - **`id`**: Identificador unico del registro.
 - **`year`** y **`month`**: Definen de forma univoca el periodo al que corresponde este resumen (ej. año=2026, mes=6 para junio). La combinacion de año y mes debe ser unica.
-- **`total_patients`**: Cantidad de pacientes nuevos o unicos que realizaron al menos una compra en ese mes. Se obtiene contando `patient.id` asociados a `package_sale` con fecha en ese mes.
-- **`total_packages_sold`**: Numero de ventas de paquetes cerradas en el mes (`package_sale` con `sale_date` en el rango).
-- **`total_income`**: Ingreso bruto total del mes. Es la suma del campo `total_amount` de todas las ventas realizadas en ese mes.
+- **`total_patients`**: Cantidad de pacientes nuevos o unicos que realizaron al menos una consulta o compra en ese mes. Se obtiene contando `patient.id` asociados a `package_sale` con fecha en ese mes.
+- **`total_packages_sold`**: Numero de ventas de paquetes de tratamiento cerradas en el mes (`package_sale` con `sale_date` en el rango).
+- **`total_income`**: Ingreso bruto total del mes. Es la suma del campo `total_amount` de todas las consultas y ventas realizadas en ese mes.
 - **`total_igv`**: Suma del IGV repercutido en todas esas ventas. Proviene de la columna `igv_amount` de `package_sale`.
 - **`total_discounts`**: Suma de todos los descuentos aplicados en el mes. Ayuda a medir el impacto de las promociones.
 - **`total_commissions_paid`**: Monto total de comisiones pagadas a referidores en el mes. Se calcula sumando los `amount` de `commission_record` cuyo `payment_date` cae dentro del mes.
