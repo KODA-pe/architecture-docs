@@ -1,4 +1,4 @@
-
+```mermaid
 flowchart LR
     subgraph Entrada["Entrada"]
         UI["Usuarios (admin, recepción)"]
@@ -57,3 +57,4 @@ flowchart LR
     Infra -.-> Servicio
     Infra -.-> Gateway
     Infra -.-> Broker
+```
