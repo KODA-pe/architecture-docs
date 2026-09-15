@@ -1,3 +1,4 @@
+> *Deprecated*
 ```mermaid
 flowchart LR
     subgraph Entrada["Entrada"]
