@@ -1,18 +1,20 @@
 
 # Contexto del Proyecto
 
-Sistema clínico. Solo se desarrolla la parte de RRHH y pagos. La parte clínica la maneja otro equipo (InnovaByte).
+Sistema clínico y administrativo integral. Inicialmente concebido con desarrollo desacoplado entre el módulo clínico (InnovaByte) y los módulos administrativos, el proyecto ha sido **unificado formalmente en un Monolito Modular sobre Clean Architecture en Java Moderno (Java 21 / Spring Boot 3)** con una **base de datos relacional PostgreSQL unificada** estructurada por esquemas lógicos.
 
-## Servicios a desarrollar
+## Módulos del Sistema
 
-- **personal-service:** doctores, horarios, roles, asistencia, sucursales, excepciones.
-- **payment-service:** pagos de sesiones/paquetes de pacientes, pago a doctores externos, gastos fijos.
-- **report-service:** reportes administrativos planos y estadísticas gráficas para gerencia.
+- **personal:** Fisioterapeutas, personal administrativo, sedes físicas, turnos, asistencias (biométrico/manual) e incidencias laborales.
+- **pagos:** Caja diaria (Efectivo/Yape), venta de paquetes y cuotas, gastos fijos y comisiones a promotores/traumatólogos (sin pasarela de pago online externa).
+- **reportes:** Estadísticas gerenciales, dashboards de picos de producción y reportes administrativos planos.
+- **clinico:** Gestión de pacientes, fichas clínicas, evaluaciones y citas terapéuticas (integración unificada de InnovaByte).
 
-## Documentacion tecnica
+## Documentación Técnica y Arquitectura
 
-- **Bases de datos:** [databases/README.md](databases/README.md)
-- **Infraestructura:** [infraestructure/README.md](infraestructure/README.md)
+- **Decisiones de Arquitectura (ADR):** [adr/README.md](adr/README.md) *(Decisiones clave: Monolito Modular, PostgreSQL con Schemas, Multi-Sede sin Multi-Tenancy, Cero Broker, Registro Financiero Manual)*
+- **Infraestructura y Diagramas:** [infraestructure/README.md](infraestructure/README.md)
+- **Bases de Datos:** [databases/README.md](databases/README.md)
 
 ---
 
