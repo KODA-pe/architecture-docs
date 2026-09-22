@@ -73,7 +73,7 @@ flowchart LR
     P_FILE --> FILE_SYS
     P_AUTH --> MOD_PERSONAL
 ```
-
+![Arquitectura del Subsistema de Reportes con RNF](./arquitectura-rnf.png)
 ---
 ## 2. Reportes Administrativos Mensuales
 
