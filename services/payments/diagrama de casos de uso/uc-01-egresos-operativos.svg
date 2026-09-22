@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="460" font-family="Arial, sans-serif">
+  <rect width="760" height="460" fill="#f8f9fa"/>
+  <text x="380" y="24" text-anchor="middle" font-size="15" font-weight="bold" fill="#212529">Egresos Operativos Diarios — EDU-0001</text>
+  <rect x="195" y="40" width="370" height="380" rx="6" fill="#e8f4fd" stroke="#2c6fad" stroke-width="2"/>
+  <text x="380" y="62" text-anchor="middle" font-size="14" font-weight="bold" fill="#2c6fad">Sistema de Pagos — CashTransaction</text>
+  <ellipse cx="380" cy="115" rx="115" ry="27" fill="white" stroke="#2c6fad" stroke-width="1.8"/>
+  <text x="380" y="115" text-anchor="middle" dominant-baseline="middle" font-size="11" fill="#1a1a2e">Crear egreso operativo</text>
+  <ellipse cx="380" cy="195" rx="115" ry="27" fill="white" stroke="#2c6fad" stroke-width="1.8"/>
+  <text x="380" y="195" text-anchor="middle" dominant-baseline="middle" font-size="11" fill="#1a1a2e">Consultar historial por fecha</text>
+  <ellipse cx="380" cy="275" rx="115" ry="27" fill="white" stroke="#2c6fad" stroke-width="1.8"/>
+  <text x="380" y="275" text-anchor="middle" dominant-baseline="middle" font-size="11" fill="#1a1a2e">Actualizar egreso operativo</text>
+  <ellipse cx="380" cy="355" rx="115" ry="27" fill="white" stroke="#2c6fad" stroke-width="1.8"/>
+  <text x="380" y="355" text-anchor="middle" dominant-baseline="middle" font-size="11" fill="#1a1a2e">Anular egreso operativo</text>
+  <circle cx="72" cy="163" r="18" fill="white" stroke="#1a1a2e" stroke-width="2"/>
+  <line x1="72" y1="181" x2="72" y2="223" stroke="#1a1a2e" stroke-width="2"/>
+  <line x1="46" y1="195" x2="98" y2="195" stroke="#1a1a2e" stroke-width="2"/>
+  <line x1="72" y1="223" x2="53" y2="253" stroke="#1a1a2e" stroke-width="2"/>
+  <line x1="72" y1="223" x2="91" y2="253" stroke="#1a1a2e" stroke-width="2"/>
+  <text x="72" y="269" text-anchor="middle" font-size="12" font-weight="bold" fill="#1a1a2e">Cajera</text>
+  <text x="72" y="285" text-anchor="middle" font-size="12" font-weight="bold" fill="#1a1a2e">ACT-0002</text>
+  <circle cx="686" cy="163" r="18" fill="white" stroke="#1a1a2e" stroke-width="2"/>
+  <line x1="686" y1="181" x2="686" y2="223" stroke="#1a1a2e" stroke-width="2"/>
+  <line x1="660" y1="195" x2="712" y2="195" stroke="#1a1a2e" stroke-width="2"/>
+  <line x1="686" y1="223" x2="667" y2="253" stroke="#1a1a2e" stroke-width="2"/>
+  <line x1="686" y1="223" x2="705" y2="253" stroke="#1a1a2e" stroke-width="2"/>
+  <text x="686" y="269" text-anchor="middle" font-size="12" font-weight="bold" fill="#1a1a2e">Gerente General</text>
+  <text x="686" y="285" text-anchor="middle" font-size="12" font-weight="bold" fill="#1a1a2e">ACT-0001</text>
+  <line x1="92" y1="208" x2="195" y2="115" stroke="#555" stroke-width="1.5"/>
+  <line x1="92" y1="208" x2="195" y2="195" stroke="#555" stroke-width="1.5"/>
+  <line x1="92" y1="208" x2="195" y2="275" stroke="#555" stroke-width="1.5"/>
+  <line x1="92" y1="208" x2="195" y2="355" stroke="#555" stroke-width="1.5"/>
+  <line x1="666" y1="208" x2="565" y2="115" stroke="#555" stroke-width="1.5"/>
+  <line x1="666" y1="208" x2="565" y2="195" stroke="#555" stroke-width="1.5"/>
+  <line x1="666" y1="208" x2="565" y2="275" stroke="#555" stroke-width="1.5"/>
+  <line x1="666" y1="208" x2="565" y2="355" stroke="#555" stroke-width="1.5"/>
+</svg>
