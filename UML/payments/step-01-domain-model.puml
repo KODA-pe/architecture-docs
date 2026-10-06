@@ -1,0 +1,449 @@
+@startuml payment_domain_model
+title Modelo de Dominio Puro - Payment Service (Paso 01: Clean Architecture)
+
+skinparam classAttributeIconSize 0
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam linetype ortho
+
+skinparam class {
+    BackgroundColor White
+    BorderColor #2C3E50
+    ArrowColor #2C3E50
+}
+
+skinparam package {
+    BackgroundColor #F8F9FA
+    BorderColor #BDC3C7
+}
+
+' ====================================================================
+' VALUE OBJECTS & IDENTIFICADORES FUERTEMENTE TIPADOS (SHARED/COMMON)
+' ====================================================================
+package "domain.model.valueobjects" {
+    
+    class Money <<Value Object>> {
+        - amount: BigDecimal
+        - currency: String
+        + Money(amount: BigDecimal)
+        + {static} of(amount: BigDecimal): Money
+        + {static} of(amount: double): Money
+        + {static} zero(): Money
+        + plus(other: Money): Money
+        + minus(other: Money): Money
+        + multiply(factor: BigDecimal): Money
+        + isGreaterThanOrEqual(other: Money): boolean
+        + isPositive(): boolean
+        + getAmount(): BigDecimal
+        + getCurrency(): String
+    }
+
+    class SaleId <<Value Object>> {
+        - value: Long
+        + {static} of(value: Long): SaleId
+        + getValue(): Long
+    }
+
+    class InstallmentId <<Value Object>> {
+        - value: Long
+        + {static} of(value: Long): InstallmentId
+        + getValue(): Long
+    }
+
+    class TransactionId <<Value Object>> {
+        - value: Long
+        + {static} of(value: Long): TransactionId
+        + getValue(): Long
+    }
+
+    class ReferrerId <<Value Object>> {
+        - value: Long
+        + {static} of(value: Long): ReferrerId
+        + getValue(): Long
+    }
+
+    class CommissionId <<Value Object>> {
+        - value: Long
+        + {static} of(value: Long): CommissionId
+        + getValue(): Long
+    }
+
+    class BranchId <<Value Object>> {
+        - value: Long
+        + {static} of(value: Long): BranchId
+        + getValue(): Long
+    }
+
+    class FixedExpenseId <<Value Object>> {
+        - value: Long
+        + {static} of(value: Long): FixedExpenseId
+        + getValue(): Long
+    }
+
+    class PatientReference <<Value Object>> {
+        - externalPatientId: String
+        - fullName: String
+        - idNumber: String
+        - phone: String
+        + hasEvaluatedSameDay(): boolean
+        + getFullName(): String
+        + getIdNumber(): String
+    }
+
+    class PaymentInfo <<Value Object>> {
+        - phone: String
+        - yapeNumber: String
+        - bankAccountNumber: String
+        - bankName: String
+        + hasYape(): boolean
+        + hasBankAccount(): boolean
+    }
+}
+
+' ====================================================================
+' ENUMERACIONES DE DOMINIO
+' ====================================================================
+package "domain.model.enums" {
+    
+    enum SaleStatus {
+        PENDING
+        PARTIALLY_PAID
+        PAID
+        ANNULLED
+    }
+
+    enum InstallmentStatus {
+        PENDING
+        PAID
+        OVERDUE
+        ANNULLED
+    }
+
+    enum TransactionType {
+        INFLOW
+        OUTFLOW
+    }
+
+    enum PaymentMethod {
+        CASH
+        YAPE
+        BANK_TRANSFER
+    }
+
+    enum CashCategory {
+        OPERATIONAL_EXPENSE
+        COMMISSION_PAYMENT
+        PACKAGE_SALE
+        INSTALLMENT_COLLECTION
+        FIXED_EXPENSE
+    }
+
+    enum TransactionStatus {
+        ACTIVE
+        ANNULLED
+    }
+
+    enum ReferrerType {
+        EXTERNAL_PROMOTER
+        AFFILIATED_DOCTOR
+    }
+
+    enum CommissionStatus {
+        PENDING
+        PAID
+        ANNULLED
+    }
+
+    enum FixedExpenseCategory {
+        RENT
+        PROFESSIONAL_FEES
+        STAFF_SALARIES
+        EXTERNAL_SERVICES
+    }
+}
+
+' ====================================================================
+' SUBDOMINIO: VENTA DE PAQUETES Y CUOTAS (EDU-0002)
+' ====================================================================
+package "domain.model.sale" {
+
+    class PackageSale <<Aggregate Root>> {
+        - id: SaleId
+        - patient: PatientReference
+        - branchId: BranchId
+        - saleDate: LocalDate
+        - basePrice: Money
+        - igvIncluded: boolean
+        - igvRate: BigDecimal
+        - igvAmount: Money
+        - discountApplied: boolean
+        - discountAmount: Money
+        - totalAmount: Money
+        - status: SaleStatus
+        - informedConsentSigned: boolean
+        - installments: List<Installment>
+        __ Lógica de Dominio y Fábrica __
+        + {static} create(patient: PatientReference, branchId: BranchId, basePrice: Money, withFactura: boolean, evaluatedSameDay: boolean, consentSigned: boolean): PackageSale
+        + generateInstallments(initialDeposit: Money, numberOfInstallments: int, firstDueDate: LocalDate): void
+        + recordInstallmentPayment(installmentId: InstallmentId, amount: Money, method: PaymentMethod, txId: TransactionId): void
+        + annul(reason: String): void
+        + isFullyPaid(): boolean
+        + getOutstandingBalance(): Money
+        - calculateTotal(): Money
+    }
+
+    class Installment <<Entity>> {
+        - id: InstallmentId
+        - installmentNumber: int
+        - amount: Money
+        - paidAmount: Money
+        - dueDate: LocalDate
+        - status: InstallmentStatus
+        - isInitialPayment: boolean
+        - payments: List<InstallmentPayment>
+        __ Reglas de Dominio __
+        + applyPayment(amount: Money, method: PaymentMethod, txId: TransactionId): InstallmentPayment
+        + markAsOverdue(): void
+        + annul(): void
+        + getRemainingAmount(): Money
+        + isSettled(): boolean
+    }
+
+    class InstallmentPayment <<Entity / Value Object>> {
+        - id: Long
+        - installmentId: InstallmentId
+        - cashTransactionId: TransactionId
+        - amount: Money
+        - paymentDate: LocalDateTime
+        - paymentMethod: PaymentMethod
+        + InstallmentPayment(installmentId: InstallmentId, txId: TransactionId, amount: Money, method: PaymentMethod)
+        + getAmount(): Money
+        + getPaymentMethod(): PaymentMethod
+    }
+}
+
+' ====================================================================
+' SUBDOMINIO: CAJA DIARIA (EDU-0001)
+' ====================================================================
+package "domain.model.cash" {
+
+    class CashTransaction <<Aggregate Root>> {
+        - id: TransactionId
+        - branchId: BranchId
+        - type: TransactionType
+        - amount: Money
+        - paymentMethod: PaymentMethod
+        - category: CashCategory
+        - description: String
+        - transactionDate: LocalDateTime
+        - status: TransactionStatus
+        __ Reglas de Dominio __
+        + {static} createInflow(branchId: BranchId, amount: Money, method: PaymentMethod, category: CashCategory, description: String): CashTransaction
+        + {static} createOutflow(branchId: BranchId, amount: Money, method: PaymentMethod, category: CashCategory, description: String): CashTransaction
+        + update(amount: Money, method: PaymentMethod, category: CashCategory, description: String): void
+        + annul(reason: String): void
+        + isCash(): boolean
+        + isYape(): boolean
+        + isActive(): boolean
+    }
+}
+
+' ====================================================================
+' SUBDOMINIO: COMISIONES EXTERNAS (EDU-0005)
+' ====================================================================
+package "domain.model.commission" {
+
+    class Referrer <<Aggregate Root>> {
+        - id: ReferrerId
+        - name: String
+        - type: ReferrerType
+        - phone: String
+        - paymentInfo: PaymentInfo
+        - defaultCommissionAmount: Money
+        - active: boolean
+        __ Reglas de Dominio __
+        + updatePaymentInfo(paymentInfo: PaymentInfo): void
+        + deactivate(): void
+        + isAffiliatedDoctor(): boolean
+    }
+
+    class CommissionRecord <<Aggregate Root>> {
+        - id: CommissionId
+        - referrerId: ReferrerId
+        - saleId: SaleId
+        - amount: Money
+        - commissionDate: LocalDate
+        - status: CommissionStatus
+        - paymentDate: LocalDate
+        - cashTransactionId: TransactionId
+        __ Reglas de Dominio __
+        + {static} createForPromoter(referrerId: ReferrerId, saleId: SaleId, patientSessionCount: int): CommissionRecord
+        + {static} createForDoctor(referrerId: ReferrerId, monthlyTotalPatients: int, agreedRate: Money): CommissionRecord
+        + markAsPaid(txId: TransactionId, paidDate: LocalDate): void
+        + adjustAmount(newAmount: Money, reason: String): void
+        + annul(reason: String): void
+        + isPending(): boolean
+    }
+}
+
+' ====================================================================
+' SUBDOMINIO: GASTOS FIJOS MENSUALES (EDU-0021)
+' ====================================================================
+package "domain.model.expense" {
+
+    class FixedExpense <<Aggregate Root>> {
+        - id: FixedExpenseId
+        - branchId: BranchId
+        - category: FixedExpenseCategory
+        - description: String
+        - amount: Money
+        - expenseDate: LocalDate
+        - isPaid: boolean
+        - paymentDate: LocalDate
+        - cashTransactionId: TransactionId
+        __ Reglas de Dominio __
+        + {static} register(branchId: BranchId, category: FixedExpenseCategory, description: String, amount: Money, expenseDate: LocalDate): FixedExpense
+        + markAsPaid(txId: TransactionId, paymentDate: LocalDate): void
+        + updateDetails(category: FixedExpenseCategory, description: String, amount: Money): void
+        + annul(): void
+        + isPaid(): boolean
+        + isPending(): boolean
+        + getAmount(): Money
+        + getCategory(): FixedExpenseCategory
+    }
+}
+
+' ====================================================================
+' EVENTOS DE DOMINIO IN-PROCESS (DESACOPLAMIENTO MODULAR)
+' ====================================================================
+package "domain.events" {
+    
+    interface DomainEvent <<Interface>> {
+        + occurredOn(): LocalDateTime
+    }
+
+    class PackageSaleCompletedEvent {
+        - saleId: SaleId
+        - patientId: String
+        - branchId: BranchId
+        - totalAmount: Money
+        - occurredOn: LocalDateTime
+    }
+
+    class InstallmentDefaultedEvent {
+        - saleId: SaleId
+        - patientId: String
+        - installmentId: InstallmentId
+        - dueDate: LocalDate
+        - debtAmount: Money
+        - occurredOn: LocalDateTime
+    }
+
+    class CashOutflowRegisteredEvent {
+        - transactionId: TransactionId
+        - branchId: BranchId
+        - amount: Money
+        - category: CashCategory
+        - occurredOn: LocalDateTime
+    }
+
+    class FixedExpensePaidEvent {
+        - expenseId: FixedExpenseId
+        - branchId: BranchId
+        - amount: Money
+        - transactionId: TransactionId
+        - occurredOn: LocalDateTime
+    }
+
+    DomainEvent <|.. PackageSaleCompletedEvent
+    DomainEvent <|.. InstallmentDefaultedEvent
+    DomainEvent <|.. CashOutflowRegisteredEvent
+    DomainEvent <|.. FixedExpensePaidEvent
+}
+
+' ====================================================================
+' PUERTOS DE SALIDA DE DOMINIO (OUTPUT PORTS / INTERFACES PURAS)
+' ====================================================================
+package "domain.ports.output" {
+
+    interface PackageSaleRepository <<Output Port>> {
+        + save(sale: PackageSale): PackageSale
+        + findById(id: SaleId): Optional<PackageSale>
+        + findByPatientDni(dni: String): List<PackageSale>
+        + findByBranchAndDateRange(branchId: BranchId, from: LocalDate, to: LocalDate): List<PackageSale>
+    }
+
+    interface CashTransactionRepository <<Output Port>> {
+        + save(transaction: CashTransaction): CashTransaction
+        + findById(id: TransactionId): Optional<CashTransaction>
+        + findByBranchAndDate(branchId: BranchId, date: LocalDate): List<CashTransaction>
+        + findDailyOutflows(branchId: BranchId, date: LocalDate): List<CashTransaction>
+    }
+
+    interface ReferrerRepository <<Output Port>> {
+        + save(referrer: Referrer): Referrer
+        + findById(id: ReferrerId): Optional<Referrer>
+        + findAllActive(): List<Referrer>
+    }
+
+    interface CommissionRecordRepository <<Output Port>> {
+        + save(commission: CommissionRecord): CommissionRecord
+        + findById(id: CommissionId): Optional<CommissionRecord>
+        + findByReferrerAndStatus(referrerId: ReferrerId, status: CommissionStatus): List<CommissionRecord>
+        + findByDateRange(from: LocalDate, to: LocalDate): List<CommissionRecord>
+    }
+
+    interface FixedExpenseRepository <<Output Port>> {
+        + save(expense: FixedExpense): FixedExpense
+        + findById(id: FixedExpenseId): Optional<FixedExpense>
+        + findByBranchAndMonth(branchId: BranchId, year: int, month: int): List<FixedExpense>
+        + findPendingExpenses(branchId: BranchId): List<FixedExpense>
+        + delete(id: FixedExpenseId): void
+    }
+
+    interface ClinicalNotificationPort <<Output Port>> {
+        + notifyPackagePaid(patientExternalId: String, saleId: SaleId): void
+        + notifyPatientBlockedForDebt(patientExternalId: String, reason: String): void
+    }
+}
+
+' ====================================================================
+' ESTADO DEL PASO 01
+' ====================================================================
+note as CompletedNote #D4EDDA
+  <b>Paso 01: Dominio Puro (100% Completado)</b>
+  - Entidades de Negocio y Reglas sin dependencias de frameworks.
+  - Value Objects e Identificadores Fuertemente Tipados.
+  - Puertos de Salida (Repositories e Interfaces de notificación).
+  - Eventos de Dominio in-process listos para desacoplamiento modular.
+  - Listo para avanzar al <b>Paso 02: Capa de Aplicación (Use Cases)</b>.
+end note
+
+' ====================================================================
+' RELACIONES ESTRUCTURALES
+' ====================================================================
+PackageSale "1" *-- "1..*" Installment : composes
+Installment "1" *-- "0..*" InstallmentPayment : tracks
+InstallmentPayment "0..*" ..> "1" TransactionId : references
+CashTransaction "1" <-- "0..*" CommissionRecord : paid via
+Referrer "1" <-- "0..*" CommissionRecord : generates
+PackageSale "1" <-- "0..*" CommissionRecord : originates from
+CashTransaction "1" <-- "0..1" FixedExpense : records payment
+
+PackageSale ..> SaleStatus
+Installment ..> InstallmentStatus
+CashTransaction ..> TransactionType
+CashTransaction ..> PaymentMethod
+CashTransaction ..> CashCategory
+CashTransaction ..> TransactionStatus
+Referrer ..> ReferrerType
+CommissionRecord ..> CommissionStatus
+FixedExpense ..> FixedExpenseCategory
+
+PackageSaleRepository ..> PackageSale
+CashTransactionRepository ..> CashTransaction
+ReferrerRepository ..> Referrer
+CommissionRecordRepository ..> CommissionRecord
+FixedExpenseRepository ..> FixedExpense
+
+@enduml
