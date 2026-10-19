@@ -1,0 +1,145 @@
+@startuml payment_domain_model_light
+title Modelo de Dominio Puro (Simplificado / Vista Estructural) - Payment Service
+
+skinparam classAttributeIconSize 0
+skinparam packageStyle folder
+skinparam shadowing false
+skinparam linetype ortho
+
+' Ocultar cualquier compartimento de atributos o métodos según estándar UML simplificado
+hide empty members
+hide empty fields
+hide empty methods
+hide members
+
+skinparam class {
+    BackgroundColor White
+    BorderColor #2C3E50
+    ArrowColor #2C3E50
+}
+
+skinparam package {
+    BackgroundColor #F8F9FA
+    BorderColor #BDC3C7
+}
+
+' ====================================================================
+' VALUE OBJECTS & IDENTIFICADORES TIPADOS
+' ====================================================================
+package "domain.model.valueobjects" {
+    class Money <<Value Object>>
+    class SaleId <<Value Object>>
+    class InstallmentId <<Value Object>>
+    class TransactionId <<Value Object>>
+    class ReferrerId <<Value Object>>
+    class CommissionId <<Value Object>>
+    class BranchId <<Value Object>>
+    class FixedExpenseId <<Value Object>>
+    class PatientReference <<Value Object>>
+    class PaymentInfo <<Value Object>>
+}
+
+' ====================================================================
+' ENUMERACIONES DE DOMINIO
+' ====================================================================
+package "domain.model.enums" {
+    enum SaleStatus
+    enum InstallmentStatus
+    enum TransactionType
+    enum PaymentMethod
+    enum CashCategory
+    enum TransactionStatus
+    enum ReferrerType
+    enum CommissionStatus
+    enum FixedExpenseCategory
+}
+
+' ====================================================================
+' SUBDOMINIO: VENTA DE PAQUETES Y CUOTAS (EDU-0002)
+' ====================================================================
+package "domain.model.sale" {
+    class PackageSale <<Aggregate Root>>
+    class Installment <<Entity>>
+    class InstallmentPayment <<Entity / Value Object>>
+}
+
+' ====================================================================
+' SUBDOMINIO: CAJA DIARIA (EDU-0001)
+' ====================================================================
+package "domain.model.cash" {
+    class CashTransaction <<Aggregate Root>>
+}
+
+' ====================================================================
+' SUBDOMINIO: COMISIONES EXTERNAS (EDU-0005)
+' ====================================================================
+package "domain.model.commission" {
+    class Referrer <<Aggregate Root>>
+    class CommissionRecord <<Aggregate Root>>
+}
+
+' ====================================================================
+' SUBDOMINIO: GASTOS FIJOS MENSUALES (EDU-0021)
+' ====================================================================
+package "domain.model.expense" {
+    class FixedExpense <<Aggregate Root>>
+}
+
+' ====================================================================
+' EVENTOS DE DOMINIO IN-PROCESS
+' ====================================================================
+package "domain.events" {
+    interface DomainEvent <<Interface>>
+    class PackageSaleCompletedEvent
+    class InstallmentDefaultedEvent
+    class CashOutflowRegisteredEvent
+    class FixedExpensePaidEvent
+
+    DomainEvent <|.. PackageSaleCompletedEvent
+    DomainEvent <|.. InstallmentDefaultedEvent
+    DomainEvent <|.. CashOutflowRegisteredEvent
+    DomainEvent <|.. FixedExpensePaidEvent
+}
+
+' ====================================================================
+' PUERTOS DE SALIDA DE DOMINIO (OUTPUT PORTS)
+' ====================================================================
+package "domain.ports.output" {
+    interface PackageSaleRepository <<Output Port>>
+    interface CashTransactionRepository <<Output Port>>
+    interface ReferrerRepository <<Output Port>>
+    interface CommissionRecordRepository <<Output Port>>
+    interface FixedExpenseRepository <<Output Port>>
+    interface ClinicalNotificationPort <<Output Port>>
+}
+
+' ====================================================================
+' RELACIONES ESTRUCTURALES DEL DOMINIO
+' ====================================================================
+PackageSale "1" *-- "1..*" Installment : composes
+Installment "1" *-- "0..*" InstallmentPayment : tracks
+InstallmentPayment "0..*" ..> "1" TransactionId : references
+CashTransaction "1" <-- "0..*" CommissionRecord : paid via
+Referrer "1" <-- "0..*" CommissionRecord : generates
+PackageSale "1" <-- "0..*" CommissionRecord : originates from
+CashTransaction "1" <-- "0..1" FixedExpense : records payment
+
+' Relaciones con Enums
+PackageSale ..> SaleStatus
+Installment ..> InstallmentStatus
+CashTransaction ..> TransactionType
+CashTransaction ..> PaymentMethod
+CashTransaction ..> CashCategory
+CashTransaction ..> TransactionStatus
+Referrer ..> ReferrerType
+CommissionRecord ..> CommissionStatus
+FixedExpense ..> FixedExpenseCategory
+
+' Puertos de Salida apuntando a sus agregados
+PackageSaleRepository ..> PackageSale : manages
+CashTransactionRepository ..> CashTransaction : manages
+ReferrerRepository ..> Referrer : manages
+CommissionRecordRepository ..> CommissionRecord : manages
+FixedExpenseRepository ..> FixedExpense : manages
+
+@enduml

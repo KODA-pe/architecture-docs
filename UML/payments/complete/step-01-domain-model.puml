@@ -2,7 +2,7 @@
 title Modelo de Dominio Puro - Payment Service (Paso 01: Clean Architecture)
 
 skinparam classAttributeIconSize 0
-skinparam packageStyle rectangle
+skinparam packageStyle folder
 skinparam shadowing false
 skinparam linetype ortho
 
