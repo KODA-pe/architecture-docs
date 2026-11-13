@@ -3,42 +3,58 @@
 En un **Monolito Modular** ([ADR-0001](../../../adr/0001-adopcion-monolito-modular-clean-architecture.md)), el módulo `pagos` convive dentro del mismo contenedor desplegable (`Spring Boot 3`) que `personal`, `reportes` y `clinico`, comunicándose *in-process* ([ADR-0004](../../../adr/0004-eliminacion-broker-mensajeria-y-comunicacion-hibrida-in-process.md)) y persistiendo exclusivamente en su esquema lógico de PostgreSQL ([ADR-0002](../../../adr/0002-base-de-datos-unificada-postgresql-con-esquemas-logicos.md)).
 
 ```mermaid
-C4Container
-    title C2 — Contenedores y Fronteras del Módulo de Pagos (services/payments)
+flowchart TB
+    classDef person fill:#08427B,stroke:#052E56,color:#FFFFFF,rx:8,ry:8
+    classDef container fill:#438DD5,stroke:#2E6295,color:#FFFFFF,rx:6,ry:6
+    classDef focus fill:#1168BD,stroke:#0B4884,stroke-width:3px,color:#FFFFFF,rx:6,ry:6
+    classDef db fill:#1168BD,stroke:#0B4884,color:#FFFFFF
+    classDef dbMuted fill:#64748B,stroke:#475569,color:#FFFFFF
 
-    Person(gerente, "Gerente General", "ACT-0001. Acceso total incluyendo egresos fijos.")
-    Person(cajera, "Recepcionista / Cajera", "ACT-0002. Caja diaria, ventas, cuotas y comisiones.")
+    subgraph Actores["Usuarios de Pagos"]
+        direction LR
+        Gerente["<b>Gerente General</b><br/><i>[ACT-0001]</i><br/>Acceso total + egresos fijos"]:::person
+        Cajera["<b>Recepcionista / Cajera</b><br/><i>[ACT-0002]</i><br/>Caja, ventas, cuotas, comisiones"]:::person
+    end
 
-    Container(spa, "SPA Web", "Frontend Web", "Vistas de caja diaria, venta de paquetes, comisiones y gastos fijos.")
-    Container(proxy, "Reverse Proxy", "Nginx / Caddy", "Terminación TLS 1.3 y enrutamiento REST.")
+    SPA["<b>SPA Web</b><br/><i>[Frontend Web]</i><br/>Vistas de caja, paquetes, comisiones y gastos"]:::container
+    Proxy["<b>Reverse Proxy</b><br/><i>[Nginx / Caddy]</i><br/>Terminación TLS 1.3 y enrutamiento REST"]:::container
 
-    Container_Boundary(monolito, "Monolito Modular (Java 21 / Spring Boot 3)") {
-        Container(mod_pagos, "Módulo Pagos [Foco]", "Java / Clean Architecture", "Caja diaria (EDU-0001), paquetes y cuotas (EDU-0002), comisiones (EDU-0005), gastos fijos (EDU-0021).")
-        Container(mod_clinico, "Módulo Clínico", "Java / Clean Architecture", "Pacientes, evaluaciones y agenda de sesiones.")
-        Container(mod_personal, "Módulo Personal", "Java / Clean Architecture", "Sedes (sede_id), roles JWT y derivadores.")
-        Container(mod_reportes, "Módulo Reportes", "Java / Clean Architecture", "Agregados gerenciales y estadísticas mensuales.")
-    }
+    subgraph Monolito["Contenedor: Monolito Modular (Java 21 / Spring Boot 3)"]
+        direction TB
+        ModPagos["<b>Módulo Pagos [Foco]</b><br/><i>[Clean Architecture]</i><br/>Caja (EDU-0001), Paquetes/Cuotas (EDU-0002),<br/>Comisiones (EDU-0005), Gastos Fijos (EDU-0021)"]:::focus
 
-    Container_Boundary(pg, "Base de Datos Unificada (PostgreSQL)") {
-        ContainerDb(db_pagos, "Esquema: pagos", "PostgreSQL Schema", "patient, package_sale, installment, installment_payment, cash_transaction, referrer, commission_record, fixed_expense.")
-        ContainerDb(db_clinico, "Esquema: clinico", "PostgreSQL Schema", "paciente, cita_evaluacion, tratamiento_sesion.")
-        ContainerDb(db_personal, "Esquema: personal", "PostgreSQL Schema", "branch (sede_id), employee, role.")
-    }
+        subgraph Vecinos["Módulos Vecinos (In-Process)"]
+            direction LR
+            ModClinico["<b>Módulo Clínico</b><br/>Pacientes, evaluaciones<br/>y citas"]:::container
+            ModPersonal["<b>Módulo Personal</b><br/>Sedes (sede_id), roles<br/>JWT y derivadores"]:::container
+            ModReportes["<b>Módulo Reportes</b><br/>Estadísticas y agregados<br/>gerenciales"]:::container
+        end
+    end
 
-    Rel(gerente, spa, "Opera caja, comisiones y gastos fijos", "HTTPS")
-    Rel(cajera, spa, "Cobra paquetes, cuotas y egresos", "HTTPS")
-    Rel(spa, proxy, "Envía comandos y consultas", "HTTPS / REST + JWT")
-    Rel(proxy, mod_pagos, "Enruta /api/payments/**", "HTTP")
+    subgraph PG["Contenedor: PostgreSQL Unificado"]
+        direction LR
+        DbPagos[("<b>schema: pagos</b><br/>package_sale, installment,<br/>installment_payment, cash_transaction,<br/>commission_record, fixed_expense")]:::db
+        DbClinico[("<b>schema: clinico</b><br/>paciente,<br/>cita_evaluacion")]:::dbMuted
+        DbPersonal[("<b>schema: personal</b><br/>branch (sede_id),<br/>employee, role")]:::dbMuted
+    end
 
-    Rel(mod_pagos, mod_clinico, "Valida paciente/evaluación y habilita/desbloquea citas", "Llamada directa @Transactional")
-    Rel(mod_pagos, mod_personal, "Consulta sede_id, roles y derivadores", "Llamada directa in-process")
-    Rel(mod_pagos, mod_reportes, "Emite eventos financieros (venta, mora, egreso)", "ApplicationEventPublisher")
+    Gerente -->|"HTTPS"| SPA
+    Cajera -->|"HTTPS"| SPA
+    SPA -->|"HTTPS / REST + JWT"| Proxy
+    Proxy -->|"Enruta /api/payments/**"| ModPagos
 
-    Rel(mod_pagos, db_pagos, "Lee y escribe transacciones financieras", "Spring Data JPA / JDBC")
-    Rel(db_pagos, db_clinico, "FK lógica patient_id", "Integridad referencial")
-    Rel(db_pagos, db_personal, "FK obligatoria sede_id", "Integridad referencial")
+    ModPagos -->|"Llamada directa @Transactional<br/>(habilita / desbloquea citas)"| ModClinico
+    ModPagos -->|"Consulta in-process<br/>(sede_id, derivadores)"| ModPersonal
+    ModPagos -.->|"ApplicationEventPublisher<br/>(eventos post-commit)"| ModReportes
 
-    UpdateLayoutConfig($c4ShapeInRow="2", $c4BoundaryInRow="2")
+    ModPagos -->|"Spring Data JPA / JDBC"| DbPagos
+    DbPagos -.->|"FK patient_id"| DbClinico
+    DbPagos -.->|"FK sede_id"| DbPersonal
+
+    style Actores fill:transparent,stroke:none
+    style Monolito fill:#EFF6FF,stroke:#3B82F6,stroke-width:2px
+    style Vecinos fill:#F8FAFC,stroke:#93C5FD,stroke-dasharray: 4 4
+    style PG fill:#F8FAFC,stroke:#64748B,stroke-width:2px
 ```
 
 ## Reglas de Frontera para `pagos`
