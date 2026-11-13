@@ -1,5 +1,7 @@
 # Resumen del servicio de pagos
 
+> **Nota de Alineamiento Arquitectónico:** Este documento describe las reglas funcionales vigentes (`EDU-0001`, `0002`, `0005`, `0021`). Las menciones históricas a `payments_db` aislada o "sistema clínico externo" fueron unificadas en **PostgreSQL único (`schema: pagos`)** y **Monolito Modular in-process** según [ADR-0001](../../adr/0001-adopcion-monolito-modular-clean-architecture.md)–[ADR-0005](../../adr/0005-registro-financiero-manual-sin-pasarela-de-pagos.md). Ver vistas actualizadas en [C2](c4/c2-pagos-contenedores.md), [C3](c4/c3-pagos-componentes.md) y [Secuencias](diagrama%20de%20secuencias/payments-sequence-diagrams.md).
+
 El servicio de pagos administra ingresos y egresos de dinero sobre la base de datos **payments_db**. Su operación cubre registros operativos diarios, ventas de paquetes con pagos fraccionados, comisiones externas y egresos fijos mensuales. Trabaja con las tablas **CashTransaction**, **Patient**, **PackageSale**, **Installment**, **CommissionRecord** y **FixedExpense**.
 
 La lógica general se apoya en cuatro principios:

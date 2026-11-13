@@ -1,5 +1,7 @@
 # Payments – InnovaByte
 
+> **Estado (Superado por Unificación):** Este documento recoge los acuerdos iniciales cuando InnovaByte operaba como sistema independiente. Con la adopción del Monolito Modular ([ADR-0001](../../adr/0001-adopcion-monolito-modular-clean-architecture.md)), la BD única ([ADR-0002](../../adr/0002-base-de-datos-unificada-postgresql-con-esquemas-logicos.md)) y la comunicación *in-process* ([ADR-0004](../../adr/0004-eliminacion-broker-mensajeria-y-comunicacion-hibrida-in-process.md)), los puntos de integración siguen vigentes a nivel de **puertos de aplicación internos** (ver [C2](c4/c2-pagos-contenedores.md) y [C3](c4/c3-pagos-componentes.md)).
+
 ## 1. Objetivo
 
 Definir la estructura de integración entre Payments e InnovaByte, identificando los componentes, datos, comunicaciones y responsabilidades que deben acordarse entre ambos sistemas.

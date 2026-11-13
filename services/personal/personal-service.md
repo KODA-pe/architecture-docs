@@ -1,5 +1,7 @@
 # Resumen y Arquitectura Genérica del Servicio de Personal
 
+> **Nota de Alineamiento Arquitectónico:** El diagrama de este archivo conserva referencias tempranas a `RabbitMQ / NATS` y `InnovaByte` externo. Conforme a [ADR-0002](../../adr/0002-base-de-datos-unificada-postgresql-con-esquemas-logicos.md) y [ADR-0004](../../adr/0004-eliminacion-broker-mensajeria-y-comunicacion-hibrida-in-process.md), la arquitectura definitiva usa **PostgreSQL único (`schema: personal`)** y **comunicación híbrida in-process** (ver [`arq-diagram_v2.md`](../../infraestructure/arq-diagram_v2.md)).
+
 El servicio de personal administra la identidad, asignación laboral, control de asistencia e incidencias del talento humano de la clínica sobre la base de datos centralizada (esquema **personal** / **DB_staff_db**). Su operación cubre el registro de sedes físicas, ficha integral de fisioterapeutas, programación semanal de turnos, captura de marcaciones de asistencia (presenciales y biométricas) y la gestión de permisos o vacaciones. Trabaja con las tablas **employee**, **role**, **branch**, **specialization**, **employee_specialization**, **shift_assignment**, **attendance** y **exception**.
 
 La lógica general se apoya en cinco principios arquitectónicos y de negocio:

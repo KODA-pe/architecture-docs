@@ -1,8 +1,11 @@
 # Infraestructura del Sistema
 
-## Diagrama de arquitectura definitiva
+## Diagrama de arquitectura definitiva y vistas C4
 
-**Archivo:** [arq-diagram_v2.md](arq-diagram_v2.md)
+- **Arquitectura Unificada:** [arq-diagram_v2.md](arq-diagram_v2.md)
+- **C4 — Nivel 1 (Contexto del Sistema):** [c4-c1-contexto.md](c4-c1-contexto.md)
+- **C4 — Despliegue del Sistema:** [c4-despliegue.md](c4-despliegue.md)
+- **C4 — Módulo Pagos (C2 y C3):** [C2 Contenedores](../services/payments/c4/c2-pagos-contenedores.md) | [C3 Componentes](../services/payments/c4/c3-pagos-componentes.md)
 
 ---
 
