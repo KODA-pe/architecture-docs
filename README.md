@@ -13,7 +13,8 @@ Sistema clínico y administrativo integral. Inicialmente concebido con desarroll
 ## Documentación Técnica y Arquitectura
 
 - **Decisiones de Arquitectura (ADR):** [adr/README.md](adr/README.md) *(Decisiones clave: Monolito Modular, PostgreSQL con Schemas, Multi-Sede sin Multi-Tenancy, Cero Broker, Registro Financiero Manual)*
-- **Infraestructura y Diagramas:** [infraestructure/README.md](infraestructure/README.md)
+- **Infraestructura y Diagramas C4:** [infraestructure/README.md](infraestructure/README.md) ([C1 Contexto](infraestructure/c4-c1-contexto.md), [C4 Despliegue](infraestructure/c4-despliegue.md))
+- **Módulo de Pagos (C2, C3 y Secuencias):** [C2 Contenedores](services/payments/c4/c2-pagos-contenedores.md) | [C3 Componentes](services/payments/c4/c3-pagos-componentes.md) | [Secuencias Esenciales](services/payments/diagrama%20de%20secuencias/payments-sequence-diagrams.md)
 - **Bases de Datos:** [databases/README.md](databases/README.md)
 
 ---

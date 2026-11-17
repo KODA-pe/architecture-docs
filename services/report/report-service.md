@@ -1,5 +1,7 @@
 # Resumen y Arquitectura Genérica del Servicio de Reportes
 
+> **Nota de Alineamiento Arquitectónico:** Las referencias a `DB_payment_service_db` y `DB_staff_db` en este documento corresponden lógicamente a los esquemas **`pagos`**, **`personal`** y **`reportes`** dentro de la instancia única de PostgreSQL ([ADR-0002](../../adr/0002-base-de-datos-unificada-postgresql-con-esquemas-logicos.md)), alimentándose por vistas SQL y eventos en memoria ([ADR-0004](../../adr/0004-eliminacion-broker-mensajeria-y-comunicacion-hibrida-in-process.md)).
+
 El servicio de reportes administra el análisis matemático, la consolidación visual y la exportación de la información financiera y operativa de la clínica. Trabaja consultando principalmente la base de datos **DB_payment_service_db** y verifica autorizaciones en **DB_staff_db**. Su operación cubre reportes mensuales oficiales, consultas personalizadas temporales y el análisis gráfico de picos de producción. Lee información de las tablas **PackageSale**, **Patient**, **CommissionRecord**, **FixedExpense**, **CashTransaction**, y escribe de forma restrictiva únicamente en **TABLE_monthly_stats**.
 
 La lógica general se apoya en cinco principios arquitectónicos y de negocio:
