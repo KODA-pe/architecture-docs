@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="890" height="678" viewBox="0 0 890 678">
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1 L 10 5 L 0 9 z" fill="#1E293B"/></marker>
+<marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1 L 10 5 L 0 9 z" fill="#1D4ED8"/></marker>
+</defs>
+<rect width="890" height="678" fill="#FFFFFF"/>
+<text x="445.0" y="26" text-anchor="middle" font-family="Liberation Sans" font-size="12.5" font-weight="bold" fill="#0F172A">Secuencia Esencial (Personal): Marcación Biométrica Offline y Bloqueo por Incidencia</text>
+<line x1="113.0" y1="92" x2="113.0" y2="616" stroke="#94A3B8" stroke-width="1.2" stroke-dasharray="5,4"/>
+<line x1="279.0" y1="92" x2="279.0" y2="616" stroke="#94A3B8" stroke-width="1.2" stroke-dasharray="5,4"/>
+<line x1="445.0" y1="92" x2="445.0" y2="616" stroke="#94A3B8" stroke-width="1.2" stroke-dasharray="5,4"/>
+<line x1="611.0" y1="92" x2="611.0" y2="616" stroke="#94A3B8" stroke-width="1.2" stroke-dasharray="5,4"/>
+<line x1="777.0" y1="92" x2="777.0" y2="616" stroke="#94A3B8" stroke-width="1.2" stroke-dasharray="5,4"/>
+<rect x="20" y="172" width="850" height="116" rx="4" fill="#F8FAFC" fill-opacity="0.7" stroke="#1D4ED8" stroke-width="1.2"/>
+<rect x="20" y="172" width="353.20000000000005" height="17" rx="2" fill="#1D4ED8"/>
+<text x="27" y="184" font-family="Liberation Sans" font-size="8.5" font-weight="bold" fill="#FFFFFF">alt [Conectividad disponible vs Caída de red en sede]</text>
+<rect x="43.0" y="48" width="140" height="44" rx="5" fill="#08427B" stroke="#0F172A" stroke-width="0.8"/>
+<text x="113.0" y="66" text-anchor="middle" font-family="Liberation Sans" font-size="9.2" font-weight="bold" fill="#FFFFFF">Personal / Admin</text>
+<text x="113.0" y="80" text-anchor="middle" font-family="Liberation Sans" font-size="8" fill="#E2E8F0">(ACT-0001)</text>
+<rect x="209.0" y="48" width="140" height="44" rx="5" fill="#475569" stroke="#0F172A" stroke-width="0.8"/>
+<text x="279.0" y="66" text-anchor="middle" font-family="Liberation Sans" font-size="9.2" font-weight="bold" fill="#FFFFFF">ZKTeco Sensefp</text>
+<text x="279.0" y="80" text-anchor="middle" font-family="Liberation Sans" font-size="8" fill="#E2E8F0">+ Buffer Offline</text>
+<rect x="375.0" y="48" width="140" height="44" rx="5" fill="#1168BD" stroke="#0F172A" stroke-width="0.8"/>
+<text x="445.0" y="66" text-anchor="middle" font-family="Liberation Sans" font-size="9.2" font-weight="bold" fill="#FFFFFF">Personal Ctrl</text>
+<text x="445.0" y="80" text-anchor="middle" font-family="Liberation Sans" font-size="8" fill="#E2E8F0">&amp; UseCase</text>
+<rect x="541.0" y="48" width="140" height="44" rx="5" fill="#0F766E" stroke="#0F172A" stroke-width="0.8"/>
+<text x="611.0" y="66" text-anchor="middle" font-family="Liberation Sans" font-size="9.2" font-weight="bold" fill="#FFFFFF">PostgreSQL</text>
+<text x="611.0" y="80" text-anchor="middle" font-family="Liberation Sans" font-size="8" fill="#E2E8F0">(personal)</text>
+<rect x="707.0" y="48" width="140" height="44" rx="5" fill="#475569" stroke="#0F172A" stroke-width="0.8"/>
+<text x="777.0" y="66" text-anchor="middle" font-family="Liberation Sans" font-size="9.2" font-weight="bold" fill="#FFFFFF">Módulo Clínico</text>
+<text x="777.0" y="80" text-anchor="middle" font-family="Liberation Sans" font-size="8" fill="#E2E8F0">(Agenda Citas)</text>
+<rect x="43.0" y="616" width="140" height="44" rx="5" fill="#08427B" stroke="#0F172A" stroke-width="0.8"/>
+<text x="113.0" y="634" text-anchor="middle" font-family="Liberation Sans" font-size="9.2" font-weight="bold" fill="#FFFFFF">Personal / Admin</text>
+<text x="113.0" y="648" text-anchor="middle" font-family="Liberation Sans" font-size="8" fill="#E2E8F0">(ACT-0001)</text>
+<rect x="209.0" y="616" width="140" height="44" rx="5" fill="#475569" stroke="#0F172A" stroke-width="0.8"/>
+<text x="279.0" y="634" text-anchor="middle" font-family="Liberation Sans" font-size="9.2" font-weight="bold" fill="#FFFFFF">ZKTeco Sensefp</text>
+<text x="279.0" y="648" text-anchor="middle" font-family="Liberation Sans" font-size="8" fill="#E2E8F0">+ Buffer Offline</text>
+<rect x="375.0" y="616" width="140" height="44" rx="5" fill="#1168BD" stroke="#0F172A" stroke-width="0.8"/>
+<text x="445.0" y="634" text-anchor="middle" font-family="Liberation Sans" font-size="9.2" font-weight="bold" fill="#FFFFFF">Personal Ctrl</text>
+<text x="445.0" y="648" text-anchor="middle" font-family="Liberation Sans" font-size="8" fill="#E2E8F0">&amp; UseCase</text>
+<rect x="541.0" y="616" width="140" height="44" rx="5" fill="#0F766E" stroke="#0F172A" stroke-width="0.8"/>
+<text x="611.0" y="634" text-anchor="middle" font-family="Liberation Sans" font-size="9.2" font-weight="bold" fill="#FFFFFF">PostgreSQL</text>
+<text x="611.0" y="648" text-anchor="middle" font-family="Liberation Sans" font-size="8" fill="#E2E8F0">(personal)</text>
+<rect x="707.0" y="616" width="140" height="44" rx="5" fill="#475569" stroke="#0F172A" stroke-width="0.8"/>
+<text x="777.0" y="634" text-anchor="middle" font-family="Liberation Sans" font-size="9.2" font-weight="bold" fill="#FFFFFF">Módulo Clínico</text>
+<text x="777.0" y="648" text-anchor="middle" font-family="Liberation Sans" font-size="8" fill="#E2E8F0">(Agenda Citas)</text>
+<line x1="30" y1="122" x2="860" y2="122" stroke="#CBD5E1" stroke-width="1"/>
+<rect x="230.60000000000002" y="112" width="428.79999999999995" height="19" rx="9" fill="#E2E8F0"/>
+<text x="445.0" y="125" text-anchor="middle" font-family="Liberation Sans" font-size="8.8" font-weight="bold" fill="#1E293B">Flujo 1: Marcación Biométrica y Resiliencia Offline (EDU-0003 / RNF-0012)</text>
+<line x1="113.0" y1="158" x2="279.0" y2="158" stroke="#1E293B" stroke-width="1.25" marker-end="url(#arrow)"/>
+<rect x="109.4" y="142" width="173.2" height="13" rx="2" fill="#FFFFFF" fill-opacity="0.95"/>
+<text x="196.0" y="152" text-anchor="middle" font-family="Liberation Sans" font-size="8.2" fill="#1E293B">1. Coloca huella en lector de sede</text>
+<line x1="279.0" y1="210" x2="445.0" y2="210" stroke="#1E293B" stroke-width="1.25" marker-end="url(#arrow)"/>
+<rect x="196.20000000000002" y="194" width="331.59999999999997" height="13" rx="2" fill="#FFFFFF" fill-opacity="0.95"/>
+<text x="362.0" y="204" text-anchor="middle" font-family="Liberation Sans" font-size="8.2" fill="#1E293B">2. POST /api/personal/attendance/biometric (employeeId, ts, sedeId)</text>
+<line x1="20" y1="234" x2="870" y2="234" stroke="#94A3B8" stroke-width="1" stroke-dasharray="4,3"/>
+<text x="30" y="246" font-family="Liberation Sans" font-size="8.2" font-weight="bold" fill="#475569">[Sin internet: retiene hasta 100k marcas en memoria/SQLite y sincroniza al volver]</text>
+<line x1="279.0" y1="266" x2="445.0" y2="266" stroke="#1E293B" stroke-width="1.25" marker-end="url(#arrow)"/>
+<rect x="205.8" y="250" width="312.4" height="13" rx="2" fill="#FFFFFF" fill-opacity="0.95"/>
+<text x="362.0" y="260" text-anchor="middle" font-family="Liberation Sans" font-size="8.2" fill="#1E293B">3. POST /attendance/sync-batch (lote ordenado cronológicamente)</text>
+<line x1="445.0" y1="316" x2="611.0" y2="316" stroke="#1E293B" stroke-width="1.25" marker-end="url(#arrow)"/>
+<rect x="405.4" y="300" width="245.2" height="13" rx="2" fill="#FFFFFF" fill-opacity="0.95"/>
+<text x="528.0" y="310" text-anchor="middle" font-family="Liberation Sans" font-size="8.2" fill="#1E293B">4. Consulta employee + shift_assignment (sede_id)</text>
+<path d="M 445.0 342 L 481.0 342 L 481.0 356 L 447.0 356" fill="none" stroke="#1E293B" stroke-width="1.25" marker-end="url(#arrow)"/>
+<rect x="485.0" y="338" width="306.90000000000003" height="14" fill="#FFFFFF" fill-opacity="0.95"/>
+<text x="488.0" y="348" font-family="Liberation Sans" font-size="8.2" fill="#1E293B">5. Aplica tolerancia 10m (alerta fijo vs bolsa horas interno)</text>
+<line x1="445.0" y1="384" x2="611.0" y2="384" stroke="#1E293B" stroke-width="1.25" marker-end="url(#arrow)"/>
+<rect x="419.8" y="368" width="216.4" height="13" rx="2" fill="#FFFFFF" fill-opacity="0.95"/>
+<text x="528.0" y="378" text-anchor="middle" font-family="Liberation Sans" font-size="8.2" fill="#1E293B">6. INSERT personal.attendance (idempotente)</text>
+<line x1="30" y1="410" x2="860" y2="410" stroke="#CBD5E1" stroke-width="1"/>
+<rect x="233.4" y="400" width="423.2" height="19" rx="9" fill="#E2E8F0"/>
+<text x="445.0" y="413" text-anchor="middle" font-family="Liberation Sans" font-size="8.8" font-weight="bold" fill="#1E293B">Flujo 2: Aprobación de Incidencia y Bloqueo de Agenda Clínica (EDU-0019)</text>
+<line x1="113.0" y1="446" x2="445.0" y2="446" stroke="#1E293B" stroke-width="1.25" marker-end="url(#arrow)"/>
+<rect x="137.20000000000002" y="430" width="283.59999999999997" height="13" rx="2" fill="#FFFFFF" fill-opacity="0.95"/>
+<text x="279.0" y="440" text-anchor="middle" font-family="Liberation Sans" font-size="8.2" fill="#1E293B">7. PATCH /api/personal/exceptions/{id}/approve (ACT-0001)</text>
+<line x1="445.0" y1="480" x2="611.0" y2="480" stroke="#1E293B" stroke-width="1.25" marker-end="url(#arrow)"/>
+<rect x="403.0" y="464" width="250.0" height="13" rx="2" fill="#FFFFFF" fill-opacity="0.95"/>
+<text x="528.0" y="474" text-anchor="middle" font-family="Liberation Sans" font-size="8.2" fill="#1E293B">8. UPDATE personal.exception SET status=&#x27;APPROVED&#x27;</text>
+<line x1="445.0" y1="514" x2="777.0" y2="514" stroke="#1D4ED8" stroke-width="1.25" marker-end="url(#arrow-blue)"/>
+<rect x="488.4" y="498" width="245.2" height="13" rx="2" fill="#FFFFFF" fill-opacity="0.95"/>
+<text x="611.0" y="508" text-anchor="middle" font-family="Liberation Sans" font-size="8.2" fill="#1D4ED8">9. blockTherapistAvailability(empId, rangoFechas)</text>
+<line x1="777.0" y1="548" x2="445.0" y2="548" stroke="#1D4ED8" stroke-width="1.25" stroke-dasharray="5,3" marker-end="url(#arrow-blue)"/>
+<rect x="512.4" y="532" width="197.2" height="13" rx="2" fill="#FFFFFF" fill-opacity="0.95"/>
+<text x="611.0" y="542" text-anchor="middle" font-family="Liberation Sans" font-size="8.2" fill="#1D4ED8">10. Agenda clínica bloqueada en el acto</text>
+<line x1="445.0" y1="582" x2="113.0" y2="582" stroke="#1E293B" stroke-width="1.25" stroke-dasharray="5,3" marker-end="url(#arrow)"/>
+<rect x="185.2" y="566" width="187.6" height="13" rx="2" fill="#FFFFFF" fill-opacity="0.95"/>
+<text x="279.0" y="576" text-anchor="middle" font-family="Liberation Sans" font-size="8.2" fill="#1E293B">11. HTTP 200 OK (Incidencia aprobada)</text>
+</svg>

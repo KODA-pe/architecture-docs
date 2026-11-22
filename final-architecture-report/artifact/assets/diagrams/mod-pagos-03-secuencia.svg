@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1056" height="894" viewBox="0 0 1056 894">
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1 L 10 5 L 0 9 z" fill="#1E293B"/></marker>
+<marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1 L 10 5 L 0 9 z" fill="#1D4ED8"/></marker>
+</defs>
+<rect width="1056" height="894" fill="#FFFFFF"/>
+<text x="528.0" y="26" text-anchor="middle" font-family="Liberation Sans" font-size="12.5" font-weight="bold" fill="#0F172A">Secuencia Esencial (Pagos): Venta de Paquete, Cobro de Cuota v02 y Habilitación Clínica</text>
+<line x1="113.0" y1="92" x2="113.0" y2="832" stroke="#94A3B8" stroke-width="1.2" stroke-dasharray="5,4"/>
+<line x1="279.0" y1="92" x2="279.0" y2="832" stroke="#94A3B8" stroke-width="1.2" stroke-dasharray="5,4"/>
+<line x1="445.0" y1="92" x2="445.0" y2="832" stroke="#94A3B8" stroke-width="1.2" stroke-dasharray="5,4"/>
+<line x1="611.0" y1="92" x2="611.0" y2="832" stroke="#94A3B8" stroke-width="1.2" stroke-dasharray="5,4"/>
+<line x1="777.0" y1="92" x2="777.0" y2="832" stroke="#94A3B8" stroke-width="1.2" stroke-dasharray="5,4"/>
+<line x1="943.0" y1="92" x2="943.0" y2="832" stroke="#94A3B8" stroke-width="1.2" stroke-dasharray="5,4"/>
+<rect x="20" y="308" width="1016" height="128" rx="4" fill="#F8FAFC" fill-opacity="0.7" stroke="#1D4ED8" stroke-width="1.2"/>
+<rect x="20" y="308" width="116.4" height="17" rx="2" fill="#1D4ED8"/>
+<text x="27" y="320" font-family="Liberation Sans" font-size="8.5" font-weight="bold" fill="#FFFFFF">Transacción ACID</text>
+<rect x="43.0" y="48" width="140" height="44" rx="5" fill="#08427B" stroke="#0F172A" stroke-width="0.8"/>
+<text x="113.0" y="66" text-anchor="middle" font-family="Liberation Sans" font-size="9.2" font-weight="bold" fill="#FFFFFF">Cajera</text>
+<text x="113.0" y="80" text-anchor="middle" font-family="Liberation Sans" font-size="8" fill="#E2E8F0">(ACT-0002)</text>
+<rect x="209.0" y="48" width="140" height="44" rx="5" fill="#438DD5" stroke="#0F172A" stroke-width="0.8"/>
+<text x="279.0" y="66" text-anchor="middle" font-family="Liberation Sans" font-size="9.2" font-weight="bold" fill="#FFFFFF">SPA Web</text>
+<text x="279.0" y="80" text-anchor="middle" font-family="Liberation Sans" font-size="8" fill="#E2E8F0">(Recepción)</text>
+<rect x="375.0" y="48" width="140" height="44" rx="5" fill="#1168BD" stroke="#0F172A" stroke-width="0.8"/>
+<text x="445.0" y="66" text-anchor="middle" font-family="Liberation Sans" font-size="9.2" font-weight="bold" fill="#FFFFFF">Pagos Controller</text>
+<text x="445.0" y="80" text-anchor="middle" font-family="Liberation Sans" font-size="8" fill="#E2E8F0">&amp; UseCase</text>
+<rect x="541.0" y="48" width="140" height="44" rx="5" fill="#475569" stroke="#0F172A" stroke-width="0.8"/>
+<text x="611.0" y="66" text-anchor="middle" font-family="Liberation Sans" font-size="9.2" font-weight="bold" fill="#FFFFFF">Módulo Clínico</text>
+<text x="611.0" y="80" text-anchor="middle" font-family="Liberation Sans" font-size="8" fill="#E2E8F0">(In-Process)</text>
+<rect x="707.0" y="48" width="140" height="44" rx="5" fill="#0F766E" stroke="#0F172A" stroke-width="0.8"/>
+<text x="777.0" y="66" text-anchor="middle" font-family="Liberation Sans" font-size="9.2" font-weight="bold" fill="#FFFFFF">PostgreSQL</text>
+<text x="777.0" y="80" text-anchor="middle" font-family="Liberation Sans" font-size="8" fill="#E2E8F0">(schema: pagos)</text>
+<rect x="873.0" y="48" width="140" height="44" rx="5" fill="#475569" stroke="#0F172A" stroke-width="0.8"/>
+<text x="943.0" y="66" text-anchor="middle" font-family="Liberation Sans" font-size="9.2" font-weight="bold" fill="#FFFFFF">EventBus -&gt;</text>
+<text x="943.0" y="80" text-anchor="middle" font-family="Liberation Sans" font-size="8" fill="#E2E8F0">Reportes (@Async)</text>
+<rect x="43.0" y="832" width="140" height="44" rx="5" fill="#08427B" stroke="#0F172A" stroke-width="0.8"/>
+<text x="113.0" y="850" text-anchor="middle" font-family="Liberation Sans" font-size="9.2" font-weight="bold" fill="#FFFFFF">Cajera</text>
+<text x="113.0" y="864" text-anchor="middle" font-family="Liberation Sans" font-size="8" fill="#E2E8F0">(ACT-0002)</text>
+<rect x="209.0" y="832" width="140" height="44" rx="5" fill="#438DD5" stroke="#0F172A" stroke-width="0.8"/>
+<text x="279.0" y="850" text-anchor="middle" font-family="Liberation Sans" font-size="9.2" font-weight="bold" fill="#FFFFFF">SPA Web</text>
+<text x="279.0" y="864" text-anchor="middle" font-family="Liberation Sans" font-size="8" fill="#E2E8F0">(Recepción)</text>
+<rect x="375.0" y="832" width="140" height="44" rx="5" fill="#1168BD" stroke="#0F172A" stroke-width="0.8"/>
+<text x="445.0" y="850" text-anchor="middle" font-family="Liberation Sans" font-size="9.2" font-weight="bold" fill="#FFFFFF">Pagos Controller</text>
+<text x="445.0" y="864" text-anchor="middle" font-family="Liberation Sans" font-size="8" fill="#E2E8F0">&amp; UseCase</text>
+<rect x="541.0" y="832" width="140" height="44" rx="5" fill="#475569" stroke="#0F172A" stroke-width="0.8"/>
+<text x="611.0" y="850" text-anchor="middle" font-family="Liberation Sans" font-size="9.2" font-weight="bold" fill="#FFFFFF">Módulo Clínico</text>
+<text x="611.0" y="864" text-anchor="middle" font-family="Liberation Sans" font-size="8" fill="#E2E8F0">(In-Process)</text>
+<rect x="707.0" y="832" width="140" height="44" rx="5" fill="#0F766E" stroke="#0F172A" stroke-width="0.8"/>
+<text x="777.0" y="850" text-anchor="middle" font-family="Liberation Sans" font-size="9.2" font-weight="bold" fill="#FFFFFF">PostgreSQL</text>
+<text x="777.0" y="864" text-anchor="middle" font-family="Liberation Sans" font-size="8" fill="#E2E8F0">(schema: pagos)</text>
+<rect x="873.0" y="832" width="140" height="44" rx="5" fill="#475569" stroke="#0F172A" stroke-width="0.8"/>
+<text x="943.0" y="850" text-anchor="middle" font-family="Liberation Sans" font-size="9.2" font-weight="bold" fill="#FFFFFF">EventBus -&gt;</text>
+<text x="943.0" y="864" text-anchor="middle" font-family="Liberation Sans" font-size="8" fill="#E2E8F0">Reportes (@Async)</text>
+<line x1="30" y1="122" x2="1026" y2="122" stroke="#CBD5E1" stroke-width="1"/>
+<rect x="336.0" y="112" width="384.0" height="19" rx="9" fill="#E2E8F0"/>
+<text x="528.0" y="125" text-anchor="middle" font-family="Liberation Sans" font-size="8.8" font-weight="bold" fill="#1E293B">Flujo 1: Venta de Paquete con Abono Inicial (EDU-0002 / EDU-0005)</text>
+<line x1="113.0" y1="158" x2="279.0" y2="158" stroke="#1E293B" stroke-width="1.25" marker-end="url(#arrow)"/>
+<rect x="83.0" y="142" width="226.0" height="13" rx="2" fill="#FFFFFF" fill-opacity="0.95"/>
+<text x="196.0" y="152" text-anchor="middle" font-family="Liberation Sans" font-size="8.2" fill="#1E293B">1. DNI, precio, abono &gt;= S/50, consentimiento</text>
+<line x1="279.0" y1="192" x2="445.0" y2="192" stroke="#1E293B" stroke-width="1.25" marker-end="url(#arrow)"/>
+<rect x="239.4" y="176" width="245.2" height="13" rx="2" fill="#FFFFFF" fill-opacity="0.95"/>
+<text x="362.0" y="186" text-anchor="middle" font-family="Liberation Sans" font-size="8.2" fill="#1E293B">2. POST /api/payments/package-sales (JWT sede_id)</text>
+<line x1="445.0" y1="226" x2="611.0" y2="226" stroke="#1D4ED8" stroke-width="1.25" marker-end="url(#arrow-blue)"/>
+<rect x="443.8" y="210" width="168.4" height="13" rx="2" fill="#FFFFFF" fill-opacity="0.95"/>
+<text x="528.0" y="220" text-anchor="middle" font-family="Liberation Sans" font-size="8.2" fill="#1D4ED8">3. findPatientAndSameDayEval(dni)</text>
+<line x1="611.0" y1="260" x2="445.0" y2="260" stroke="#1D4ED8" stroke-width="1.25" stroke-dasharray="5,3" marker-end="url(#arrow-blue)"/>
+<rect x="453.4" y="244" width="149.2" height="13" rx="2" fill="#FFFFFF" fill-opacity="0.95"/>
+<text x="528.0" y="254" text-anchor="middle" font-family="Liberation Sans" font-size="8.2" fill="#1D4ED8">4. Datos paciente + eval. hoy</text>
+<path d="M 445.0 286 L 481.0 286 L 481.0 300 L 447.0 300" fill="none" stroke="#1E293B" stroke-width="1.25" marker-end="url(#arrow)"/>
+<rect x="485.0" y="282" width="233.4" height="14" fill="#FFFFFF" fill-opacity="0.95"/>
+<text x="488.0" y="292" font-family="Liberation Sans" font-size="8.2" fill="#1E293B">5. Calcula IGV 18%, desc. S/25 y abono &gt;= S/50</text>
+<line x1="445.0" y1="346" x2="777.0" y2="346" stroke="#1E293B" stroke-width="1.25" marker-end="url(#arrow)"/>
+<rect x="459.6" y="330" width="302.8" height="13" rx="2" fill="#FFFFFF" fill-opacity="0.95"/>
+<text x="611.0" y="340" text-anchor="middle" font-family="Liberation Sans" font-size="8.2" fill="#1E293B">6. INSERT package_sale + installment + cash_tx + inst_payment</text>
+<line x1="445.0" y1="380" x2="777.0" y2="380" stroke="#1E293B" stroke-width="1.25" marker-end="url(#arrow)"/>
+<rect x="459.6" y="364" width="302.8" height="13" rx="2" fill="#FFFFFF" fill-opacity="0.95"/>
+<text x="611.0" y="374" text-anchor="middle" font-family="Liberation Sans" font-size="8.2" fill="#1E293B">7. opt [si hay derivador]: INSERT commission_record (PENDING)</text>
+<line x1="445.0" y1="414" x2="611.0" y2="414" stroke="#1D4ED8" stroke-width="1.25" marker-end="url(#arrow-blue)"/>
+<rect x="429.4" y="398" width="197.2" height="13" rx="2" fill="#FFFFFF" fill-opacity="0.95"/>
+<text x="528.0" y="408" text-anchor="middle" font-family="Liberation Sans" font-size="8.2" fill="#1D4ED8">8. notifyPackagePaid(patientId, saleId)</text>
+<line x1="445.0" y1="464" x2="943.0" y2="464" stroke="#1E293B" stroke-width="1.25" stroke-dasharray="5,3" marker-end="url(#arrow)"/>
+<rect x="600.2" y="448" width="187.6" height="13" rx="2" fill="#FFFFFF" fill-opacity="0.95"/>
+<text x="694.0" y="458" text-anchor="middle" font-family="Liberation Sans" font-size="8.2" fill="#1E293B">9. publish(PackageSaleCompletedEvent)</text>
+<line x1="445.0" y1="498" x2="279.0" y2="498" stroke="#1E293B" stroke-width="1.25" stroke-dasharray="5,3" marker-end="url(#arrow)"/>
+<rect x="285.0" y="482" width="154.0" height="13" rx="2" fill="#FFFFFF" fill-opacity="0.95"/>
+<text x="362.0" y="492" text-anchor="middle" font-family="Liberation Sans" font-size="8.2" fill="#1E293B">10. HTTP 201 Created (SaleDTO)</text>
+<line x1="30" y1="524" x2="1026" y2="524" stroke="#CBD5E1" stroke-width="1"/>
+<rect x="352.8" y="514" width="350.4" height="19" rx="9" fill="#E2E8F0"/>
+<text x="528.0" y="527" text-anchor="middle" font-family="Liberation Sans" font-size="8.8" font-weight="bold" fill="#1E293B">Flujo 2: Deuda Dinámica y Cobro de Cuota Subsiguiente (v02)</text>
+<line x1="279.0" y1="560" x2="445.0" y2="560" stroke="#1E293B" stroke-width="1.25" marker-end="url(#arrow)"/>
+<rect x="261.0" y="544" width="202.0" height="13" rx="2" fill="#FFFFFF" fill-opacity="0.95"/>
+<text x="362.0" y="554" text-anchor="middle" font-family="Liberation Sans" font-size="8.2" fill="#1E293B">11. GET /package-sales/history?dni={dni}</text>
+<line x1="445.0" y1="594" x2="777.0" y2="594" stroke="#1E293B" stroke-width="1.25" marker-end="url(#arrow)"/>
+<rect x="483.6" y="578" width="254.79999999999998" height="13" rx="2" fill="#FFFFFF" fill-opacity="0.95"/>
+<text x="611.0" y="588" text-anchor="middle" font-family="Liberation Sans" font-size="8.2" fill="#1E293B">12. SELECT total_amount - SUM(paid_amount) al vuelo</text>
+<line x1="113.0" y1="628" x2="279.0" y2="628" stroke="#1E293B" stroke-width="1.25" marker-end="url(#arrow)"/>
+<rect x="71.0" y="612" width="250.0" height="13" rx="2" fill="#FFFFFF" fill-opacity="0.95"/>
+<text x="196.0" y="622" text-anchor="middle" font-family="Liberation Sans" font-size="8.2" fill="#1E293B">13. Registra abono cuota (ej. S/ 40 Efectivo/Yape)</text>
+<line x1="279.0" y1="662" x2="445.0" y2="662" stroke="#1E293B" stroke-width="1.25" marker-end="url(#arrow)"/>
+<rect x="237.0" y="646" width="250.0" height="13" rx="2" fill="#FFFFFF" fill-opacity="0.95"/>
+<text x="362.0" y="656" text-anchor="middle" font-family="Liberation Sans" font-size="8.2" fill="#1E293B">14. POST /installments/{id}/payments (JWT sede_id)</text>
+<line x1="445.0" y1="696" x2="777.0" y2="696" stroke="#1E293B" stroke-width="1.25" marker-end="url(#arrow)"/>
+<rect x="435.6" y="680" width="350.8" height="13" rx="2" fill="#FFFFFF" fill-opacity="0.95"/>
+<text x="611.0" y="690" text-anchor="middle" font-family="Liberation Sans" font-size="8.2" fill="#1E293B">15. INSERT cash_tx + inst_payment; UPDATE inst &amp; sale (PAID si saldo=0)</text>
+<line x1="445.0" y1="730" x2="611.0" y2="730" stroke="#1D4ED8" stroke-width="1.25" marker-end="url(#arrow-blue)"/>
+<rect x="398.2" y="714" width="259.6" height="13" rx="2" fill="#FFFFFF" fill-opacity="0.95"/>
+<text x="528.0" y="724" text-anchor="middle" font-family="Liberation Sans" font-size="8.2" fill="#1D4ED8">16. opt [regulariza]: unblockAppointments(patientId)</text>
+<line x1="445.0" y1="764" x2="943.0" y2="764" stroke="#1E293B" stroke-width="1.25" stroke-dasharray="5,3" marker-end="url(#arrow)"/>
+<rect x="597.8" y="748" width="192.4" height="13" rx="2" fill="#FFFFFF" fill-opacity="0.95"/>
+<text x="694.0" y="758" text-anchor="middle" font-family="Liberation Sans" font-size="8.2" fill="#1E293B">17. publish(InstallmentCollectedEvent)</text>
+<line x1="445.0" y1="798" x2="279.0" y2="798" stroke="#1E293B" stroke-width="1.25" stroke-dasharray="5,3" marker-end="url(#arrow)"/>
+<rect x="273.0" y="782" width="178.0" height="13" rx="2" fill="#FFFFFF" fill-opacity="0.95"/>
+<text x="362.0" y="792" text-anchor="middle" font-family="Liberation Sans" font-size="8.2" fill="#1E293B">18. HTTP 200 OK (Saldo actualizado)</text>
+</svg>
